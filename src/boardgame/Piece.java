@@ -2,15 +2,15 @@ package boardgame;
 
 public class Piece {
 	protected Position position;
-	private Board booard;
+	private Board board;
 	
-	public Piece(Board booard) {
-		this.booard = booard;
+	public Piece(Board board) {
+		this.board = board;
 		position=null;
 	}
 
 	protected Board getBooard() {
-		return booard;
+		return board;
 	}
 
 	
