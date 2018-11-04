@@ -31,8 +31,8 @@ public class UI {
 
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
 	public static void clearScreen() {
-		System.out.print("\033[H\033[2J");
-		System.out.flush();
+	System.out.print("\033[H\033[2J");
+	System.out.flush();
 	}
 	
 	public static ChessPosition readChessPosition(Scanner sc) {
@@ -53,16 +53,35 @@ public class UI {
 			System.out.print(((pieces.length) - i) + " ");
 
 			for (int j = 0; j < pieces.length; j++) {
-				printPiece(pieces[i][j]);
+				printPiece(pieces[i][j],false);
 			}
 			System.out.println();
 		}
 		System.out.println("  a b c d e f g h ");
 	}
 
-	public static void printPiece(ChessPiece piece) {
+
+	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+		for (int i = 0; i < pieces.length; i++) {
+
+			System.out.print(((pieces.length) - i) + " ");
+
+			for (int j = 0; j < pieces.length; j++) {
+				printPiece(pieces[i][j],possibleMoves[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println("  a b c d e f g h ");
+	}
+	
+	
+	
+	public static void printPiece(ChessPiece piece, boolean background) {
+		if(background) {
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}
 		if (piece == null) {
-			System.out.print("-");
+			System.out.print("-" + ANSI_RESET);
 		} else {
 			if (piece.getColor() == Color.WHITE) {
 				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
